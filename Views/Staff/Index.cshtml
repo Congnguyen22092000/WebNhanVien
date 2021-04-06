@@ -1,0 +1,96 @@
+﻿@model List<WebNhanVien.Models.NhanVien>
+    @{
+        ViewBag.Title = "Danh sách nhân viên";
+    }
+    <div   style=" text-align: center;">
+        <h1>@ViewBag.Title</h1>
+    </div>
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <div >
+                <form asp-action="index" method="post" asp-controller="Staff" class="input-group">
+                    <input name="key" type="search" class="form-control rounded" placeholder="Từ Khóa Cần Tìm" aria-label="Search"
+                           aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-outline-primary" style=" border: 1px solid #00ff90; color: #ffffff; background-color: #00ff90; text-align: center;margin-top: 27px;left: 49%; right: 50%;  position: relative; transform: translate(-50%, -50%);">Tìm</button>
+                </form>
+
+            </div>
+               
+
+
+        <a style="margin: 10px 0;" class="btn btn-success" href="/Staff/Create">Thêm mới</a>
+        <a style="margin: 10px 0px 0px 949px; position: absolute;" class="btn btn-success" href="/Staff/Reup">Trở Lại</a>
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #00ff90">
+                    <th>Mã nhân viên</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>SĐT</th>
+                    <th>Chức vụ</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.maNV</td>
+                        <td>@item.hoTen</td>
+                        <td>@item.ngaySinh.ToShortDateString()</td>
+                        <td>@item.soDT</td>
+                        <td>@item.chucVu</td>
+                        <td>
+                            <a class="btn btn-info" href="/Staff/Edit/@item.maNV">Sửa</a>
+
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#NV-@Model.IndexOf(item)">Xóa</button>
+                            <div class="modal" id="NV-@Model.IndexOf(item)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <i class='fas fa-exclamation-triangle'></i>
+                                            <h5 class="modal-title">Bạn Có Chắc Muốn Xóa</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="Huy-@item.maNV">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Nhân Viên <span style="color:red">@item.hoTen</span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                            <a class="btn btn-primary" href="/Staff/Delete/@item.maNV">Xóa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        </div>
+
+    </body>
+    </html>
+
+
