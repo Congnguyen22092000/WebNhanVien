@@ -6,6 +6,7 @@ using System.Web;
 
 namespace WebNhanVien.Models
 {
+
     public class NhanVien
     {
         public NhanVien(string maNhanVien, string hoTen, DateTime ngaySinh, string soDT, string chucVu)
@@ -30,10 +31,10 @@ namespace WebNhanVien.Models
 
         public NhanVien() { }
 
-      
 
-
+        
 
 
     }
+    
 }

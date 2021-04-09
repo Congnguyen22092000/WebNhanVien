@@ -792,3 +792,15 @@ C:\Users\congn\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\We
 C:\Users\congn\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\ref\WebNhanVien.dll
 C:\Users\congn\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.pdb
 C:\Users\congn\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.genruntimeconfig.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.csprojAssemblyReference.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.AssemblyInfoInputs.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.AssemblyInfo.cs
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.csproj.CoreCompileInputs.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.RazorAssemblyInfo.cache
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.RazorAssemblyInfo.cs
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.dll
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\ref\WebNhanVien.dll
+C:\Users\thiet\Downloads\WebNhanVien\WebNhanVien\WebNhanVien\WebNhanVien\obj\Debug\net5.0\WebNhanVien.pdb

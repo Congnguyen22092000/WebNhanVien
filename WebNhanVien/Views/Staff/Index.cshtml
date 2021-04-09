@@ -1,116 +1,19 @@
-﻿@*@model List<WebNhanVien.Models.NhanVien>
-    @{
-        ViewBag.Title = "Danh sách nhân viên";
-    }
-    <div style=" text-align: center;">
-        <h1>@ViewBag.Title</h1>
-    </div>
+﻿@model List<WebNhanVien.Models.NhanVien>
 
+@*@model WebNhanVien.Models.NhanVienModel*@
 
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-
-        <div class="container">
-            <div>
-                <form asp-action="index" method="post" asp-controller="Staff" class="input-group">
-                    <input name="key" type="search" class="form-control rounded" placeholder="Từ Khóa Cần Tìm" aria-label="Search"
-                           aria-describedby="search-addon" />
-                    <button type="submit" class="btn btn-outline-primary" style=" border: 1px solid #00ff90; color: #ffffff; background-color: #28a745; text-align: center;margin-top: 27px;left: 49%; right: 50%;  position: relative; transform: translate(-50%, -50%);">Tìm kiếm</button>
-                </form>
-
-            </div>
-
-
-
-            <a style="margin: 10px 0;" class="btn btn-success" href="/Staff/Create">Thêm mới</a>
-            <a style="margin: 10px 0px 0px 949px; position: absolute;" class="btn btn-success" href="/Staff/Reup">Trở Lại</a>
-
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr style="background-color: #00ff90">
-                        <th>Mã nhân viên</th>
-                        <th>Họ và tên</th>
-                        <th>Ngày sinh</th>
-                        <th>SĐT</th>
-                        <th>Chức vụ</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.maNhanVien</td>
-                            <td>@item.hoTen</td>
-                            <td>@item.ngaySinh.ToShortDateString()</td>
-                            <td>@item.soDT</td>
-                            <td>@item.chucVu</td>
-                            <td>
-                            
-                                <a class="btn btn-info" href="/Staff/Edit/@item.maNhanVien">Sửa</a>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#NV-@Model.IndexOf(item)">Xóa</button>
-                                <div class="modal" id="NV-@Model.IndexOf(item)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <i class='fas fa-exclamation-triangle'></i>
-                                                <h5 class="modal-title">Bạn Có Chắc Muốn Xóa</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="Huy-@item.maNhanVien">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Nhân Viên <span style="color:red">@item.hoTen</span>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                <button class="btn btn-danger delBtn" id="@item.maNhanVien">Xóa</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-
-                </tbody>
-            </table>
-        </div>
-
-    </body>
-    </html>
-
-
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        <script src="~/js/staff/index.js"></script>
-    }*@
-
-
-@model List<WebNhanVien.Models.NhanVien>
 
 @{
     ViewData["Title"] = "Danh Sách Nhân Viên";
 }
 
+
+<h1 style="text-align: center;">Danh Sách Nhân Viên</h1>
 <div>
-   
+
     <div>
-        <div style="border-radius: 3px; left: 46%; right: 50%; position: relative; background-color: #28a745; margin: 20px 0; max-width: 100px; text-align: center; color: #ffff;">Ô tìm kiếm</div>
-        <form asp-action="index" method="post" asp-controller="Staff" class="input-group">
+        <div style="border-radius: 3px; left: 42%; position: relative; background-color: #28a745; margin: 20px 0; max-width: 15%; padding: 1%; font-size: 22px; text-align: center; color: #ffff;">Ô tìm kiếm</div>
+        <form asp-action="index" method="post" asp-controller="Staff" class="input-group" style="margin-bottom: 30px;">
 
 
             <input name="key" type="search" class="form-control rounded" placeholder="Từ Khóa Cần Tìm" aria-label="Search"
@@ -118,22 +21,24 @@
         </form>
 
     </div>
-    <h1 style="text-align: center;">Danh Sách Nhân Viên</h1>
+
 </div>
 <div>
 
-    <p>
-        <a class="btn btn-success" asp-action="Create">Thêm Nhân Viên</a>
-      
-    </p>
+    @*<p>
+            <a style="margin-top: 20px;" class="btn btn-success" asp-action="create">Thêm Nhân Viên</a>
+
+
+        </p>*@
+
 
 </div>
 
-<table class="table  table-bordered">
+<table class="table  table-dark table-striped">
     <thead>
         <tr>
             <th>
-                MNV
+                Mã nhân viên
             </th>
             <th>
                 Họ Tên
@@ -144,11 +49,11 @@
             <th>
                 Số điện thoại
             </th>
-           
+
             <th>
                 Chức vụ
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
@@ -161,7 +66,8 @@
                     @item.maNhanVien
 
                 </td>
-                <td id="timKiem">
+                @*id="timKiem"*@
+                <td>
                     @item.hoTen
 
                 </td>
@@ -172,11 +78,11 @@
                 <td>
                     @item.soDT
                 </td>
-               
+
                 <td>
                     @item.chucVu
                 </td>
-                
+
                 <td>
                     <a class="btn btn-info" style="background-color:#28a745;border-color:#28a745;" href="/Staff/Edit/@item.maNhanVien">Sửa</a>
                     <button type="button" class="btn btn-warning" style="background-color:#900c0c; border-color:#900c0c;color:#ffffff;" data-toggle="modal" data-target="#NV-@Model.IndexOf(item)">Xóa</button>
@@ -185,13 +91,13 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <i class='fas fa-exclamation-triangle'></i>
-                                    <h5 class="modal-title">Bạn Có Chắc Muốn Xóa</h5>
+                                    <h5 style="color:#000000;" class="modal-title">Bạn Có Chắc Muốn Xóa</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="Huy-@item.maNhanVien">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    Nhân Viên <span style="color:red">@item.hoTen</span>
+                                <div class="modal-body" style="text-align: center;">
+                                    <span style="color:red;">@item.hoTen</span>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -207,7 +113,152 @@
     </tbody>
 </table>
 
+@*Phần popup tạo nhân viên--------------------------------------------------------*@
+<!DOCTYPE html>
+<html>
+<head>
+    @*using @model WebNhanVien.Models.NhanVien*@
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .closeBtn {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .closeBtn:hover,
+            .closeBtn:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif;">
+
+
+    <!-- Trigger/Open The Modal -->
+    <button class="btn btn-outline-success" id="myBtn">Thêm nhân viên</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal" style="display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: rgb(0,0,0); /* Fallback color */ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ -webkit-animation-name: fadeIn; /* Fade in the background */ -webkit-animation-duration: 0.4s; animation-name: fadeIn; animation-duration: 0.4s;">
+
+        <!-- Modal content -->
+        <div class="modal-content" style=" position: relative; top: 18%; max-width: 60%; margin: auto; min-height: 30%; background-color: #fefefe; width: 100%; -webkit-animation-name: slideIn; -webkit-animation-duration: 0.4s; animation-name: slideIn; animation-duration: 0.4s; -webkit-animation-name: slideIn; -webkit-animation-duration: 0.4s; animation-name: slideIn; animation-duration: 0.4s;">
+            <div class="modal-header" style=" padding: 2px 16px; background-color: #5cb85c; color: white; text-align: center;display: block;">
+                <span class="closeBtn">&times;</span>
+                <h2 style="padding: 15px;">Thêm hồ sơ nhân viên mới</h2>
+            </div>
+            <div class="modal-body" style="padding: 2px 16px;">
+
+               @* <form id="CreateForm" asp-action="createNV" asp-controller="staff" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label type="text" id="maNhanVien" name="maNhanVien">Mã nhân viên</label>
+                        <input style="margin-bottom: 15px;" type="text" name="maNhanVien" id="maNhanVien" value="" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model[0].hoTen" class="control-label">Họ tên</label>
+                        <input asp-for="@Model[0].hoTen" value="" class="form-control" />
+                        <span asp-validation-for="@Model[0].hoTen" class="text-danger"></span>
+
+                    </div>
+                    <p id="ErrorMgs" style="color:red;"></p>
+                    <div class="form-group">
+                        <label asp-for="@Model[0].ngaySinh" class="control-label">Ngày sinh</label>
+                        <input asp-for="@Model[0].ngaySinh" value="" class="form-control" type="date" />
+                        <span asp-validation-for="@Model[0].ngaySinh" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model[0].soDT" class="control-label">Số điện thoại</label>
+                        <input asp-for="@Model[0].soDT" value="" class="form-control" />
+                        <span asp-validation-for="@Model[0].soDT" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model[0].chucVu" class="control-label">Chức vụ</label>
+                        <input asp-for="@Model[0].chucVu" value="" class="form-control" />
+                        <span asp-validation-for="@Model[0].chucVu" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Thêm Mới" class="btn btn-success" id="SubmitBtn" disabled />
+                    </div>
+                </form>*@
+
+                <form style="display: grid; margin: 20px;" action="/staff/CreateNV" method="post">
+
+                    @using (Html.BeginForm())
+                    {
+
+                        <label type="text" name="maNhanVien">Mã nhân viên</label>
+                        <input style="margin-bottom: 15px;" type="text" name="maNhanVien" id="maNhanVien" value="" disabled />
+
+                        <label type="text" name="hoTen">Họ và tên</label>
+                        <input style="margin-bottom: 15px;" type="text" name="hoTen" id="hoTen" />
+                        <span id="ErrorMgs" class="text-danger"></span>
+
+
+                        <label type="date" name="ngaySinh">Ngày sinh</label>
+                        <input style="margin-bottom: 15px;" name="ngaySinh" type="date" id="ngaySinh" />
+
+                        <label type="text" name="soDT">Số điện thoại</label>
+                        <input style="margin-bottom: 15px;" type="text" name="soDT" id="soDT" />
+
+                        <label type="text" name="chucVu">Chức vụ</label>
+                        <input style="margin-bottom: 15px;" type="text" name="chucVu" id="chucVu" />
+
+                        <input style="margin-bottom: 15px;" type="submit" id="SubmitBtn" disabled class="btn btn-success" value="Thêm mới" />
+
+
+                    }
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 20px 16px; background-color: #5cb85c; color: #2da949f7; }">
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+
+        var btn = document.getElementById("myBtn");
+
+
+        var span = document.getElementsByClassName("closeBtn")[0];
+
+
+
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/index.js"></script>
 }
+

@@ -14,14 +14,38 @@ namespace WebNhanVien.Controllers
     public class StaffController : Controller
     {
         float LastStaffId = 6;
+        
         public SessionHelper SessionHelper = new SessionHelper();
+
+        /*public class NhanVienModel
+        {
+            public NhanVien nv { get; set; }
+
+            public List<NhanVien> DsNhanVien { get; set; }
+        }*/
         // GET: Staff
+        public NhanVien nv = new NhanVien();
         public List<NhanVien> DsNhanVien = new List<NhanVien>();
         public StaffController() {
 
-            
+
+            /*GetNhanVienAll();*/
+            /*GetNhanVien();*/
             TaoDsNhanVien();
-            
+
+
+        }
+        /*public NhanVienModel GetNhanVienAll()
+        {
+            NhanVienModel nvAll = new NhanVienModel();
+            nvAll.nv = GetNhanVien();
+            nvAll.DsNhanVien = TaoDsNhanVien();
+            return nvAll;
+        }*/
+
+        public NhanVien GetNhanVien()
+        {
+            return nv;
         }
         public List<NhanVien> TaoDsNhanVien()
         {
@@ -51,7 +75,7 @@ namespace WebNhanVien.Controllers
 
                 HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
                 HttpContext.Session.SetString("LastStaffId", JsonConvert.SerializeObject(LastStaffId));
-                /*HttpContext.Session.SetString("StaffListTemp", JsonConvert.SerializeObject(DsNhanVien));*/
+
             }
 
             return View(DsNhanVien);
@@ -72,8 +96,9 @@ namespace WebNhanVien.Controllers
 
                 HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
                 HttpContext.Session.SetString("LastStaffId", JsonConvert.SerializeObject(LastStaffId));
-                /*HttpContext.Session.SetString("StaffListTemp", JsonConvert.SerializeObject(DsNhanVien));*/
+                
             }
+
                
             if (key != "")
             {
@@ -95,17 +120,11 @@ namespace WebNhanVien.Controllers
 
         }
 
-        /*public ActionResult ReUp()
-        {
-            DsNhanVien = JsonConvert.DeserializeObject<List<NhanVien>>(HttpContext.Session.GetString("StaffListTemp"));
-            HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
-            return Redirect("/staff/index");
-        }*/
 
-
+        
 
         [HttpPost]
-        public IActionResult Create(NhanVien newItem = null)
+        public IActionResult CreateNV(NhanVien newItem = null)
         {
 
             byte[] json;
@@ -113,12 +132,21 @@ namespace WebNhanVien.Controllers
             {
                 DsNhanVien = JsonConvert.DeserializeObject<List<NhanVien>>(HttpContext.Session.GetString("StaffList"));
                 LastStaffId = JsonConvert.DeserializeObject<float>(HttpContext.Session.GetString("LastStaffId"));
+                if (this.LastStaffId % 10 == 0)
+                {
+                    newItem.maNhanVien = "NV-" + (this.LastStaffId / 10000).ToString().Substring(2) + "0";
+                }
+                else
+                {
+                    newItem.maNhanVien = "NV-" + (this.LastStaffId / 10000).ToString().Substring(2);
+                }
                 newItem.hoTen = XuLyTen(newItem.hoTen);
                 if (!IsDuplicatedStaff(newItem))
-                {
+                { 
                     DsNhanVien.Add(newItem);
+                    LastStaffId += 1;
                 }
-                LastStaffId += 1;
+                
                 HttpContext.Session.SetString("LastStaffId", JsonConvert.SerializeObject(LastStaffId));
                 HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
 
@@ -126,19 +154,13 @@ namespace WebNhanVien.Controllers
             return Redirect("/staff/index");
         }
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateNV()
         {
-            LastStaffId = JsonConvert.DeserializeObject<float>(HttpContext.Session.GetString("LastStaffId"));
-            if (this.LastStaffId % 10 == 0)
-            {
-                ViewBag.LastStaffId = "NV-" + (this.LastStaffId / 10000).ToString().Substring(2) + "0";
-            }
-            else
-            {
-                ViewBag.LastStaffId = "NV-" + (this.LastStaffId / 10000).ToString().Substring(2);
-            }
-            ViewBag.StaffListJson = HttpContext.Session.GetString("StaffList");
+            /*LastStaffId = JsonConvert.DeserializeObject<float>(HttpContext.Session.GetString("LastStaffId"));
+            
+            ViewBag.StaffListJson = HttpContext.Session.GetString("StaffList");*/
             return View();
+            /*return Redirect("/staff/index");*/
         }
 
         [HttpPost]
@@ -188,6 +210,7 @@ namespace WebNhanVien.Controllers
             byte[] json;
             if (HttpContext.Session.TryGetValue("StaffList", out json))
             {
+                LastStaffId = JsonConvert.DeserializeObject<float>(HttpContext.Session.GetString("LastStaffId"));
                 DsNhanVien = JsonConvert.DeserializeObject<List<NhanVien>>(HttpContext.Session.GetString("StaffList"));
             }
             for (int i = 0; i < DsNhanVien.Count; i++)
@@ -195,6 +218,8 @@ namespace WebNhanVien.Controllers
                 if (DsNhanVien[i].maNhanVien == maNhanVien)
                 {
                     DsNhanVien.RemoveAt(i);
+                    /*LastStaffId -= 1;
+                    HttpContext.Session.SetString("LastStaffId", JsonConvert.SerializeObject(LastStaffId));*/
                     HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
                 }
             }
@@ -202,25 +227,7 @@ namespace WebNhanVien.Controllers
         }
 
 
-        /*[HttpPost]
-        public bool Delete(string maNhanVien)
-        {
-            byte[] json;
-            if (HttpContext.Session.TryGetValue("StaffList", out json))
-            {
-                DsNhanVien = JsonConvert.DeserializeObject<List<NhanVien>>(HttpContext.Session.GetString("StaffList"));
-            }
-            for (int i = 0; i < DsNhanVien.Count; i++)
-            {
-                if (DsNhanVien[i].maNhanVien == maNhanVien)
-                {
-                    DsNhanVien.RemoveAt(i);
-                    HttpContext.Session.SetString("StaffList", JsonConvert.SerializeObject(DsNhanVien));
-                }
-            }
-            return true;
-        }*/
-
+    
         public string XuLyTen(string name)
         {
             string result = "";
@@ -301,5 +308,14 @@ namespace WebNhanVien.Controllers
             }
             return daTonTai;
         }
+
+        [HttpGet]
+        public ActionResult test()
+        {
+
+            return View();
+        }
+
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿@model WebNhanVien.Models.NhanVien
-@using WebNhanVien.Controllers
+@*@using WebNhanVien.Controllers*@
 
 @{
     ViewData["Title"] = "Thêm Mới Nhân Viên";
@@ -10,10 +10,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form id="CreateForm" asp-action="create" asp-controller="staff" method="post">
+        <form id="CreateForm" asp-action="createNV" asp-controller="staff" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="maNhanVien" class="control-label"></label>
+                <label asp-for="maNhanVien" class="control-label">Mã nhân viên</label>
                 @{
                     var maNhanVien = ViewBag.LastStaffId;
                 }
@@ -23,25 +23,25 @@
                 <span asp-validation-for="maNhanVien" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="hoTen" class="control-label"></label>
+                <label asp-for="hoTen" class="control-label">Họ tên</label>
                 <input asp-for="hoTen" class="form-control" />
                 <span asp-validation-for="hoTen" class="text-danger"></span>
 
             </div>
             <p id="ErrorMgs" style="color:red;"></p>
             <div class="form-group">
-                <label asp-for="ngaySinh" class="control-label"></label>
+                <label asp-for="ngaySinh" class="control-label">Ngày sinh</label>
                 <input asp-for="ngaySinh" class="form-control" type="date" />
                 <span asp-validation-for="ngaySinh" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="soDT" class="control-label"></label>
+                <label asp-for="soDT" class="control-label">Số điện thoại</label>
                 <input asp-for="soDT" class="form-control" />
                 <span asp-validation-for="soDT" class="text-danger"></span>
             </div>
            
             <div class="form-group">
-                <label asp-for="chucVu" class="control-label"></label>
+                <label asp-for="chucVu" class="control-label">Chức vụ</label>
                 <input asp-for="chucVu" class="form-control" />
                 <span asp-validation-for="chucVu" class="text-danger"></span>
             </div>
@@ -53,7 +53,7 @@
 
     </div>
 </div>
-<a asp-action="Index">Hủy Bỏ</a>
+<a class="btn btn-danger" asp-action="Index">Hủy Bỏ</a>
 
 
 

@@ -6657,19 +6657,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cong\\.nuget\\packages\\": {}
+    "C:\\Users\\thiet\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cong\\Desktop\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien.csproj",
+      "projectUniqueName": "C:\\Users\\thiet\\Downloads\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien.csproj",
       "projectName": "WebNhanVien",
-      "projectPath": "C:\\Users\\cong\\Desktop\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien.csproj",
-      "packagesPath": "C:\\Users\\cong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cong\\Desktop\\WebNhanVien\\WebNhanVien\\WebNhanVien\\obj\\",
+      "projectPath": "C:\\Users\\thiet\\Downloads\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien.csproj",
+      "packagesPath": "C:\\Users\\thiet\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thiet\\Downloads\\WebNhanVien\\WebNhanVien\\WebNhanVien\\WebNhanVien\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
